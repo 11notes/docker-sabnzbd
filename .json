@@ -4,9 +4,7 @@
   "root":"/sabnzbd",
   
   "semver":{
-    "version":"4.5.0",
-    "stable":"4.5.0",
-    "latest":"4.5.0"
+    "version":"4.5.0"
   },
 
   "readme":{
