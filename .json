@@ -1,0 +1,24 @@
+{
+  "image":"11notes/sabnzbd",
+  "name":"sabnzbd",
+  "root":"/sabnzbd",
+  
+  "semver":{
+    "version":"4.5.0",
+    "stable":"4.5.0",
+    "latest":"4.5.0"
+  },
+
+  "readme":{
+    "description":"Run SABnzbd smaller, lightweight and more secure",
+    "parent":{
+      "image":"11notes/alpine:stable"
+    },
+    "built":{
+      "sabnzbd":"https://github.com/sabnzbd/sabnzbd"
+    },
+    "comparison":{
+      "image":"linuxserver/sabnzbd:4.5.0"
+    }
+  }
+}

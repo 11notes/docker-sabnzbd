@@ -1,0 +1,22 @@
+name: "arrs"
+services:
+  sabnzbd:
+    image: "11notes/sabnzbd:4.5.1"
+    read_only: true
+    environment:
+      TZ: "Europe/Zurich"
+    volumes:
+      - "sabnzbd.etc:/sabnzbd/etc"
+    tmpfs:
+      - "/tmp:uid=1000,gid=1000" # required for read-only image
+    ports:
+      - "8080:8080/tcp"
+    networks:
+      frontend:
+    restart: "always"
+
+volumes:
+  sabnzbd.etc:
+
+networks:
+  frontend:
