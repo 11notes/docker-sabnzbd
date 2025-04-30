@@ -1,7 +1,7 @@
 name: "arrs"
 services:
   sabnzbd:
-    image: "11notes/sabnzbd:4.5.1"
+    image: "11notes/sabnzbd:4.5.0"
     read_only: true
     environment:
       TZ: "Europe/Zurich"
