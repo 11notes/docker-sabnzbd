@@ -1,21 +1,21 @@
 ![banner](https://github.com/11notes/defaults/blob/main/static/img/banner.png?raw=true)
 
 # SABNZBD
-[<img src="https://img.shields.io/badge/github-source-blue?logo=github&color=040308">](https://github.com/11notes/docker-SABNZBD)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![size](https://img.shields.io/docker/image-size/11notes/sabnzbd/4.5.0?color=0eb305)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![version](https://img.shields.io/docker/v/11notes/sabnzbd/4.5.0?color=eb7a09)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![pulls](https://img.shields.io/docker/pulls/11notes/sabnzbd?color=2b75d6)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)[<img src="https://img.shields.io/github/issues/11notes/docker-SABNZBD?color=7842f5">](https://github.com/11notes/docker-SABNZBD/issues)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![swiss_made](https://img.shields.io/badge/Swiss_Made-FFFFFF?labelColor=FF0000&logo=data:image/svg%2bxml;base64,PHN2ZyB2ZXJzaW9uPSIxIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDMyIDMyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im0wIDBoMzJ2MzJoLTMyeiIgZmlsbD0iI2YwMCIvPjxwYXRoIGQ9Im0xMyA2aDZ2N2g3djZoLTd2N2gtNnYtN2gtN3YtNmg3eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==)
+[<img src="https://img.shields.io/badge/github-source-blue?logo=github&color=040308">](https://github.com/11notes/docker-SABNZBD)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![size](https://img.shields.io/docker/image-size/11notes/sabnzbd/4.5.1?color=0eb305)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![version](https://img.shields.io/docker/v/11notes/sabnzbd/4.5.1?color=eb7a09)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![pulls](https://img.shields.io/docker/pulls/11notes/sabnzbd?color=2b75d6)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)[<img src="https://img.shields.io/github/issues/11notes/docker-SABNZBD?color=7842f5">](https://github.com/11notes/docker-SABNZBD/issues)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![swiss_made](https://img.shields.io/badge/Swiss_Made-FFFFFF?labelColor=FF0000&logo=data:image/svg%2bxml;base64,PHN2ZyB2ZXJzaW9uPSIxIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDMyIDMyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im0wIDBoMzJ2MzJoLTMyeiIgZmlsbD0iI2YwMCIvPjxwYXRoIGQ9Im0xMyA2aDZ2N2g3djZoLTd2N2gtNnYtN2gtN3YtNmg3eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==)
 
 Run SABnzbd smaller, lightweight and more secure
 
 # MAIN TAGS 🏷️
 These are the main tags for the image. There is also a tag for each commit and its shorthand sha256 value.
 
-* [4.5.0](https://hub.docker.com/r/11notes/sabnzbd/tags?name=4.5.0)
-* [4.5.0-unraid](https://hub.docker.com/r/11notes/sabnzbd/tags?name=4.5.0-unraid)
+* [4.5.1](https://hub.docker.com/r/11notes/sabnzbd/tags?name=4.5.1)
+* [4.5.1-unraid](https://hub.docker.com/r/11notes/sabnzbd/tags?name=4.5.1-unraid)
 
 # REPOSITORIES ☁️
 ```
-docker pull 11notes/sabnzbd:4.5.0
-docker pull ghcr.io/11notes/sabnzbd:4.5.0
-docker pull quay.io/11notes/sabnzbd:4.5.0
+docker pull 11notes/sabnzbd:4.5.1
+docker pull ghcr.io/11notes/sabnzbd:4.5.1
+docker pull quay.io/11notes/sabnzbd:4.5.1
 ```
 
 # UNRAID VERSION 🟠
@@ -39,7 +39,7 @@ If you value security, simplicity and the ability to interact with the maintaine
 # COMPARISON 🏁
 Below you find a comparison between this image and the most used or original one.
 
-| ![128px](https://github.com/11notes/defaults/blob/main/static/img/transparent128x1px.png?raw=true)**image** | 11notes/sabnzbd:4.5.0 | linuxserver/sabnzbd:4.5.0 |
+| ![128px](https://github.com/11notes/defaults/blob/main/static/img/transparent128x1px.png?raw=true)**image** | 11notes/sabnzbd:4.5.1 | linuxserver/sabnzbd:4.5.1 |
 | ---: | :---: | :---: |
 | **image size on disk** | 165MB | 172MB |
 | **process UID/GID** | 1000/1000 | 0/0 |
@@ -57,7 +57,7 @@ Below you find a comparison between this image and the most used or original one
 name: "arrs"
 services:
   sabnzbd:
-    image: "11notes/sabnzbd:4.5.0"
+    image: "11notes/sabnzbd:4.5.1"
     read_only: true
     environment:
       TZ: "Europe/Zurich"
@@ -110,4 +110,4 @@ networks:
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-sabnzbd/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-sabnzbd/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-sabnzbd/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 30.04.2025, 08:18:01 (CET)*
+*created 30.04.2025, 08:25:37 (CET)*
