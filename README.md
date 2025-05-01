@@ -6,7 +6,7 @@
 Run SABnzbd smaller, lightweight and more secure
 
 # SYNOPSIS 📖
-**What can I do with this?** This image will give you a rootless and lightweight Radarr installation. Radarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
+**What can I do with this?** This image will give you a rootless and lightweight SABnzbd installation. SABnzbd is an Open Source Binary Newsreader written in Python.
 
 # UNIQUE VALUE PROPOSITION 💶
 **Why should I run this image and not the other image(s) that already exist?** Good question! All the other images on the market that do exactly the same don’t do or offer these options:
@@ -16,7 +16,7 @@ Run SABnzbd smaller, lightweight and more secure
 >* This image is created via a secure, pinned CI/CD process and immune to upstream attacks, most other images have upstream dependencies that can be exploited
 >* This image contains a proper health check that verifies the app is actually working, most other images have either no health check or only check if a port is open or ping works
 >* This image works as read-only, most other images need to write files to the image filesystem
->* This image has an auto update feature that will automatically build the latest version if released, most other image providers do this too slow
+>* This repository has an auto update feature that will automatically build the latest version if released, most other providers don't do this
 >* This image is smaller than most other images
 
 If you value security, simplicity and the ability to interact with the maintainer and developer of an image. Using my images is a great start in that direction.
@@ -49,7 +49,8 @@ services:
     volumes:
       - "sabnzbd.etc:/sabnzbd/etc"
     tmpfs:
-      - "/tmp:uid=1000,gid=1000" # required for read-only image
+      # required for read-only image
+      - "/tmp:uid=1000,gid=1000"
     ports:
       - "8080:8080/tcp"
     networks:
@@ -110,4 +111,4 @@ docker pull quay.io/11notes/sabnzbd:4.5.1
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-sabnzbd/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-sabnzbd/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-sabnzbd/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 01.05.2025, 07:24:53 (CET)*
+*created 01.05.2025, 10:59:55 (CET)*
