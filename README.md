@@ -5,22 +5,6 @@
 
 Run SABnzbd smaller, lightweight and more secure
 
-# MAIN TAGS 🏷️
-These are the main tags for the image. There is also a tag for each commit and its shorthand sha256 value.
-
-* [4.5.1](https://hub.docker.com/r/11notes/sabnzbd/tags?name=4.5.1)
-* [4.5.1-unraid](https://hub.docker.com/r/11notes/sabnzbd/tags?name=4.5.1-unraid)
-
-# REPOSITORIES ☁️
-```
-docker pull 11notes/sabnzbd:4.5.1
-docker pull ghcr.io/11notes/sabnzbd:4.5.1
-docker pull quay.io/11notes/sabnzbd:4.5.1
-```
-
-# UNRAID VERSION 🟠
-This image supports unraid by default. Simply add **-unraid** to any tag and the image will run as 99:100 instead of 1000:1000 causing no issues on unraid. Enjoy.
-
 # SYNOPSIS 📖
 **What can I do with this?** This image will give you a rootless and lightweight Radarr installation. Radarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 
@@ -32,6 +16,7 @@ This image supports unraid by default. Simply add **-unraid** to any tag and the
 >* This image is created via a secure, pinned CI/CD process and immune to upstream attacks, most other images have upstream dependencies that can be exploited
 >* This image contains a proper health check that verifies the app is actually working, most other images have either no health check or only check if a port is open or ping works
 >* This image works as read-only, most other images need to write files to the image filesystem
+>* This image has an auto update feature that will automatically build the latest version if released, most other image providers do this too slow
 >* This image is smaller than most other images
 
 If you value security, simplicity and the ability to interact with the maintainer and developer of an image. Using my images is a great start in that direction.
@@ -39,7 +24,7 @@ If you value security, simplicity and the ability to interact with the maintaine
 # COMPARISON 🏁
 Below you find a comparison between this image and the most used or original one.
 
-| ![128px](https://github.com/11notes/defaults/blob/main/static/img/transparent128x1px.png?raw=true)**image** | 11notes/sabnzbd:4.5.1 | linuxserver/sabnzbd:4.5.1 |
+| **image** | 11notes/sabnzbd:4.5.1 | linuxserver/sabnzbd:4.5.1 |
 | ---: | :---: | :---: |
 | **image size on disk** | 165MB | 172MB |
 | **process UID/GID** | 1000/1000 | 0/0 |
@@ -92,6 +77,25 @@ networks:
 | `TZ` | [Time Zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) | |
 | `DEBUG` | Will activate debug option for container image and app (if available) | |
 
+# MAIN TAGS 🏷️
+These are the main tags for the image. There is also a tag for each commit and its shorthand sha256 value.
+
+* [4.5.1](https://hub.docker.com/r/11notes/sabnzbd/tags?name=4.5.1)
+* [4.5.1-unraid](https://hub.docker.com/r/11notes/sabnzbd/tags?name=4.5.1-unraid)
+
+### There is no latest tag, what am I supposed to do about updates?
+It is of my opinion that the ```:latest``` tag is super dangerous. Many times, I’ve introduced **breaking** changes to my images. This would have messed up everything for some people. If you don’t want to change the tag to the latest [semver](https://semver.org/), simply use the short versions of [semver](https://semver.org/). Instead of using ```:4.5.1``` you can use ```:4``` or ```:4.5```. Since on each new version these tags are updated to the latest version of the software, using them is identical to using ```:latest``` but at least fixed to a major or minor version.
+
+# REGISTRIES ☁️
+```
+docker pull 11notes/sabnzbd:4.5.1
+docker pull ghcr.io/11notes/sabnzbd:4.5.1
+docker pull quay.io/11notes/sabnzbd:4.5.1
+```
+
+${{ title_unraid }}
+This image supports unraid by default. Simply add **-unraid** to any tag and the image will run as 99:100 instead of 1000:1000 causing no issues on unraid. Enjoy.
+
 # SOURCE 💾
 * [11notes/sabnzbd](https://github.com/11notes/docker-SABNZBD)
 
@@ -110,4 +114,4 @@ networks:
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-sabnzbd/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-sabnzbd/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-sabnzbd/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 30.04.2025, 08:25:37 (CET)*
+*created 30.04.2025, 23:28:58 (CET)*
