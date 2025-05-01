@@ -1,4 +1,4 @@
-${{ content_synopsis }} This image will give you a rootless and lightweight Radarr installation. Radarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
+${{ content_synopsis }} This image will give you a rootless and lightweight SABnzbd installation. SABnzbd is an Open Source Binary Newsreader written in Python.
 
 ${{ content_uvp }} Good question! All the other images on the market that do exactly the same don’t do or offer these options:
 
