@@ -70,15 +70,11 @@ ARG APP_OPT_ROOT=/opt/sabnzbd
         ${APP_ROOT} \
         ${APP_OPT_ROOT};
 
-  # :: support unraid
-    RUN set -ex; \
-      eleven unraid
-
 # :: Volumes
   VOLUME ["${APP_ROOT}/etc"]
 
 # :: Monitor
-  HEALTHCHECK --interval=5s --timeout=2s CMD netstat -an | grep -q 1688 || exit 1
+  HEALTHCHECK --interval=5s --timeout=2s CMD ["/usr/bin/curl", "-kILs", "--fail", "-o", "/dev/null", "http://localhost:8080"]
 
 # :: Start
   USER ${APP_UID}:${APP_GID}
