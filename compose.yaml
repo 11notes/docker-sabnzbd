@@ -8,7 +8,8 @@ services:
     volumes:
       - "sabnzbd.etc:/sabnzbd/etc"
     tmpfs:
-      - "/tmp:uid=1000,gid=1000" # required for read-only image
+      # required for read-only image
+      - "/tmp:uid=1000,gid=1000"
     ports:
       - "8080:8080/tcp"
     networks:
