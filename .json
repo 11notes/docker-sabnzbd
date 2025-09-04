@@ -6,7 +6,8 @@
     "version": "4.5.3"
   },
   "readme": {
-    "description": "Run SABnzbd smaller, lightweight and more secure",
+    "description": "Run SABnzbd lightweight and secure",
+    "introduction":"SABnzbd is an Open Source Binary Newsreader written in Python.",
     "parent": {
       "image": "11notes/alpine:stable"
     },
