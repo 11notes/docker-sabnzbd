@@ -14,7 +14,7 @@
       "sabnzbd": "https://github.com/sabnzbd/sabnzbd"
     },
     "comparison": {
-      "image": "linuxserver/sabnzbd:4.5.3"
+      "images": ["linuxserver/sabnzbd", "ghcr.io/hotio/sabnzbd", "ghcr.io/home-operations/sabnzbd:rolling"]
     }
   }
 }
