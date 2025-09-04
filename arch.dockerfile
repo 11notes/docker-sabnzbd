@@ -4,10 +4,10 @@
 # GLOBAL
   ARG APP_UID=1000 \
       APP_GID=1000 \
-      APP_VERSION=4.5.3 \
+      APP_VERSION=0 \
       APP_OPT_ROOT=/opt/sabnzbd
   ARG BUILD_ROOT=/SABnzbd-${APP_VERSION} \
-      BUILD_PYTHON=3.12
+      BUILD_PYTHON=3.13
 
 # :: FOREIGN IMAGES
   FROM 11notes/distroless:localhealth AS distroless-localhealth
@@ -33,7 +33,7 @@
     cp -R ${BUILD_ROOT}/* ${APP_OPT_ROOT};
 
 # :: WHEELS
-  FROM 11notes/python:${BUILD_PYTHON} AS wheels
+  FROM 11notes/python:wheel-${BUILD_PYTHON} AS wheels
   ARG APP_OPT_ROOT
   COPY --from=opt ${APP_OPT_ROOT}/requirements.txt /requirements.txt
   USER root
