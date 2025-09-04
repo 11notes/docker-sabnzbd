@@ -1,80 +1,128 @@
-ARG APP_OPT_ROOT=/opt/sabnzbd
+# ╔═════════════════════════════════════════════════════╗
+# ║                       SETUP                         ║
+# ╚═════════════════════════════════════════════════════╝
+# GLOBAL
+  ARG APP_UID=1000 \
+      APP_GID=1000 \
+      APP_VERSION=4.5.3 \
+      APP_OPT_ROOT=/opt/sabnzbd
+  ARG BUILD_ROOT=/SABnzbd-${APP_VERSION} \
+      BUILD_PYTHON=3.12
 
-# :: Util
+# :: FOREIGN IMAGES
+  FROM 11notes/distroless:localhealth AS distroless-localhealth
+  FROM 11notes/distroless:par2 AS distroless-par2
+  FROM 11notes/distroless:unrar AS distroless-unrar
+  FROM 11notes/util:bin AS util-bin
   FROM 11notes/util AS util
 
-# :: Build / sabnzbd
-  FROM alpine AS build
-  ARG APP_VERSION
-  ARG APP_OPT_ROOT
-  ARG BUILD_ROOT=/SABnzbd-${APP_VERSION}
+
+# ╔═════════════════════════════════════════════════════╗
+# ║                       BUILD                         ║
+# ╚═════════════════════════════════════════════════════╝
+# :: SOURCE
+  FROM alpine AS opt
+  COPY --from=util-bin / /
+  ARG APP_VERSION \
+      APP_OPT_ROOT \
+      BUILD_ROOT
+
   RUN set -ex; \
-    apk --no-cache --update add \
-      curl; \
-    curl -SL https://github.com/sabnzbd/sabnzbd/releases/download/${APP_VERSION}/SABnzbd-${APP_VERSION}-src.tar.gz | tar -zxC /; \
+    eleven github asset sabnzbd/sabnzbd ${APP_VERSION} SABnzbd-${APP_VERSION}-src.tar.gz; \
     mkdir -p ${APP_OPT_ROOT}; \
     cp -R ${BUILD_ROOT}/* ${APP_OPT_ROOT};
 
-# :: Header
-  FROM 11notes/distroless:par2 AS par2
-  FROM 11notes/distroless:unrar AS unrar
-  FROM 11notes/alpine:stable
+# :: WHEELS
+  FROM 11notes/python:${BUILD_PYTHON} AS wheels
+  ARG APP_OPT_ROOT
+  COPY --from=opt ${APP_OPT_ROOT}/requirements.txt /requirements.txt
+  USER root
+  RUN set -ex; \
+    mkdir -p /pip/wheels; \
+    pip3 wheel \
+      --wheel-dir /pip/wheels \
+      -f https://11notes.github.io/python-wheels/ \
+      -r /requirements.txt;
 
-  # :: arguments
-    ARG TARGETARCH
-    ARG APP_IMAGE
-    ARG APP_NAME
-    ARG APP_VERSION
-    ARG APP_ROOT
-    ARG APP_UID
-    ARG APP_GID
+# :: SABNZBD
+  FROM 11notes/python:3 AS build
+  ARG APP_OPT_ROOT \
+      APP_ROOT \
+      APP_UID \
+      APP_GID
+
+  COPY --from=opt ${APP_OPT_ROOT} ${APP_OPT_ROOT}
+  COPY --from=wheels /pip/wheels /pip/wheels 
+  COPY ./rootfs /
+
+  USER root
+
+  RUN set -ex; \
+    apk --no-cache --update add \
+      util-linux-misc \
+      unzip \
+      7zip;
+
+  RUN set -ex; \
+    mkdir -p ${APP_ROOT}/etc; \
+    pip3 install \
+      --no-index \
+      -f /pip/wheels \
+      -f https://11notes.github.io/python-wheels/ \
+      -r ${APP_OPT_ROOT}/requirements.txt; \
+    rm -f ${APP_OPT_ROOT}/requirements.txt; \
+    rm -rf /pip/wheels;
+
+  RUN set -ex; \
+    chmod +x -R /usr/local/bin; \
+    chown -R ${APP_UID}:${APP_GID} \
+      ${APP_ROOT};
+
+# ╔═════════════════════════════════════════════════════╗
+# ║                       IMAGE                         ║
+# ╚═════════════════════════════════════════════════════╝
+# :: HEADER
+  FROM scratch
+
+  # :: default arguments
+    ARG TARGETPLATFORM \
+        TARGETOS \
+        TARGETARCH \
+        TARGETVARIANT \
+        APP_IMAGE \
+        APP_NAME \
+        APP_VERSION \
+        APP_ROOT \
+        APP_UID \
+        APP_GID \
+        APP_NO_CACHE
+
+  # :: app specific arguments
     ARG APP_OPT_ROOT
 
-  # :: environment
-    ENV APP_IMAGE=${APP_IMAGE}
-    ENV APP_NAME=${APP_NAME}
-    ENV APP_VERSION=${APP_VERSION}
-    ENV APP_ROOT=${APP_ROOT}
+  # :: default environment
+    ENV APP_IMAGE=${APP_IMAGE} \
+        APP_NAME=${APP_NAME} \
+        APP_VERSION=${APP_VERSION} \
+        APP_ROOT=${APP_ROOT}
+
+  # :: app specific environment
     ENV APP_OPT_ROOT=${APP_OPT_ROOT}
 
   # :: multi-stage
-    COPY --from=util /usr/local/bin /usr/local/bin
-    COPY --from=build ${APP_OPT_ROOT} ${APP_OPT_ROOT}
-    COPY --from=par2 /usr/local/bin /usr/local/bin
-    COPY --from=unrar /usr/local/bin /usr/local/bin
+    COPY --from=distroless-par2 / /
+    COPY --from=distroless-unrar / /
+    COPY --from=distroless-localhealth / /
+    COPY --from=util / /
+    COPY --from=build / /
 
-# :: Run
-  USER root
-  RUN eleven printenv;
-
-  # :: install application
-    RUN set -ex; \
-      apk --no-cache --update add \
-        util-linux-misc \
-        unzip \
-        7zip \
-        python3; \
-      apk --no-cache --update --virtual .build add \
-        py3-pip;
-
-    RUN set -ex; \
-      mkdir -p ${APP_ROOT}/etc; \
-      pip3 install --no-cache-dir -r ${APP_OPT_ROOT}/requirements.txt --break-system-packages; \
-      apk del --no-network .build;
-
-  # :: copy filesystem changes and set correct permissions
-    COPY ./rootfs /
-    RUN set -ex; \
-      chmod +x -R /usr/local/bin; \
-      chown -R ${APP_UID}:${APP_GID} \
-        ${APP_ROOT} \
-        ${APP_OPT_ROOT};
-
-# :: Volumes
+# :: PERSISTENT DATA
   VOLUME ["${APP_ROOT}/etc"]
 
-# :: Monitor
-  HEALTHCHECK --interval=5s --timeout=2s CMD ["/usr/bin/curl", "-kILs", "--fail", "-o", "/dev/null", "http://localhost:8080"]
+# :: MONITORING
+  HEALTHCHECK --interval=5s --timeout=2s --start-period=5s \
+    CMD ["/usr/local/bin/localhealth", "http://127.0.0.1:8080/", "-I"]
 
-# :: Start
+# :: EXECUTE
   USER ${APP_UID}:${APP_GID}
+  ENTRYPOINT ["/usr/local/bin/tini", "--", "/usr/local/bin/entrypoint.sh"]
