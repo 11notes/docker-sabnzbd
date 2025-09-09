@@ -9,8 +9,10 @@ Run SABnzbd rootless, lightweight and secure
 
 [SABnzbd](https://github.com/sabnzbd/sabnzbd) (created by [sabnzbd](https://github.com/sabnzbd)) is an Open Source Binary Newsreader written in Python. It's totally free, easy to use, and works practically everywhere. SABnzbd makes Usenet as simple and streamlined as possible by automating everything we can. All you have to do is add an .nzb. SABnzbd takes over from there, where it will be automatically downloaded, verified, repaired, extracted and filed away with zero human interaction. SABnzbd offers an easy setup wizard and has self-analysis tools to verify your setup.
 
+![INTERFACE](https://github.com/11notes/docker-sabnzbd/blob/master/img/Interface.png?raw=true)
+
 # SYNOPSIS 📖
-**What can I do with this?** This image will give you a rootless and lightweight SABnzbd installation.
+**What can I do with this?** This image will give you a [rootless](https://github.com/11notes/RTFM/blob/main/linux/container/image/rootless.md) and lightweight SABnzbd installation for your adventures on the high seas *arrrr*!
 
 # ARR STACK IMAGES 🏴‍☠️
 This image is part of the so called arr-stack (apps to pirate and manage media content). Here is the list of all it's companion apps for the best pirate experience:
@@ -137,4 +139,4 @@ docker pull quay.io/11notes/sabnzbd:4.5.3
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-sabnzbd/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-sabnzbd/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-sabnzbd/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 09.09.2025, 15:22:25 (CET)*
+*created 09.09.2025, 15:45:42 (CET)*
