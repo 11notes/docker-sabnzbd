@@ -1,6 +1,6 @@
 ${{ content_synopsis }} This image will give you a rootless and lightweight SABnzbd installation.
 
-
+${{ content_arr_stack }}
 
 ${{ content_uvp }} Good question! Because ...
 
@@ -34,3 +34,7 @@ ${{ content_parent }}
 ${{ content_built }}
 
 ${{ content_tips }}
+
+${{ title_caution }}
+${{ github:> [!CAUTION] }}
+${{ github:> }}* This image contains the freeware (not open source) unrar!
