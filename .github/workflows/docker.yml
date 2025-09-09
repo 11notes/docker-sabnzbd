@@ -561,6 +561,7 @@ jobs:
   # ║                                                     ║
   # ╚═════════════════════════════════════════════════════╝
   finally:
+    if: ${{ always() }}
     needs:
       - docker
       - merge_platform_images
