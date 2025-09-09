@@ -1,49 +1,67 @@
 ![banner](https://github.com/11notes/defaults/blob/main/static/img/banner.png?raw=true)
 
 # SABNZBD
-![size](https://img.shields.io/docker/image-size/11notes/sabnzbd/4.5.2?color=0eb305)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![version](https://img.shields.io/docker/v/11notes/sabnzbd/4.5.2?color=eb7a09)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![pulls](https://img.shields.io/docker/pulls/11notes/sabnzbd?color=2b75d6)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)[<img src="https://img.shields.io/github/issues/11notes/docker-SABNZBD?color=7842f5">](https://github.com/11notes/docker-SABNZBD/issues)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![swiss_made](https://img.shields.io/badge/Swiss_Made-FFFFFF?labelColor=FF0000&logo=data:image/svg%2bxml;base64,PHN2ZyB2ZXJzaW9uPSIxIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDMyIDMyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0idHJhbnNwYXJlbnQiLz4KICA8cGF0aCBkPSJtMTMgNmg2djdoN3Y2aC03djdoLTZ2LTdoLTd2LTZoN3oiIGZpbGw9IiNmZmYiLz4KPC9zdmc+)
+![size](https://img.shields.io/docker/image-size/11notes/sabnzbd/4.5.3?color=0eb305)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![version](https://img.shields.io/docker/v/11notes/sabnzbd/4.5.3?color=eb7a09)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![pulls](https://img.shields.io/docker/pulls/11notes/sabnzbd?color=2b75d6)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)[<img src="https://img.shields.io/github/issues/11notes/docker-SABNZBD?color=7842f5">](https://github.com/11notes/docker-SABNZBD/issues)![5px](https://github.com/11notes/defaults/blob/main/static/img/transparent5x2px.png?raw=true)![swiss_made](https://img.shields.io/badge/Swiss_Made-FFFFFF?labelColor=FF0000&logo=data:image/svg%2bxml;base64,PHN2ZyB2ZXJzaW9uPSIxIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDMyIDMyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0idHJhbnNwYXJlbnQiLz4KICA8cGF0aCBkPSJtMTMgNmg2djdoN3Y2aC03djdoLTZ2LTdoLTd2LTZoN3oiIGZpbGw9IiNmZmYiLz4KPC9zdmc+)
 
-Run SABnzbd smaller, lightweight and more secure
+Run SABnzbd rootless, lightweight and secure
+
+# INTRODUCTION 📢
+
+[SABnzbd](https://github.com/sabnzbd/sabnzbd) is an Open Source Binary Newsreader written in Python.
 
 # SYNOPSIS 📖
-**What can I do with this?** This image will give you a rootless and lightweight SABnzbd installation. SABnzbd is an Open Source Binary Newsreader written in Python.
+**What can I do with this?** This image will give you a rootless and lightweight SABnzbd installation.
+
+# ARR STACK IMAGES 🏴‍☠️
+- [11notes/plex](https://github.com/11notes/docker-plex)
+- [11notes/prowlarr](https://github.com/11notes/docker-prowlarr)
+- [11notes/qbittorrent](https://github.com/11notes/docker-qbittorrent)
+- [11notes/radarr](https://github.com/11notes/docker-radarr)
+- [11notes/sonarr](https://github.com/11notes/docker-sonarr)
+This image is part of the so called arr-stack (apps to pirate and manage media content). Here is the list of all it's companion apps for the best pirate experience:
 
 # UNIQUE VALUE PROPOSITION 💶
-**Why should I run this image and not the other image(s) that already exist?** Good question! All the other images on the market that do exactly the same don’t do or offer these options:
+**Why should I run this image and not the other image(s) that already exist?** Good question! Because ...
 
 > [!IMPORTANT]
->* This image runs as 1000:1000 by default, most other images run everything as root
->* This image is created via a secure, pinned CI/CD process and immune to upstream attacks, most other images have upstream dependencies that can be exploited
->* This image contains a proper health check that verifies the app is actually working, most other images have either no health check or only check if a port is open or ping works
->* This image works as read-only, most other images need to write files to the image filesystem
->* This repository has an auto update feature that will automatically build the latest version if released, most other providers don't do this
->* This image is smaller than most other images
+>* ... this image runs [rootless](https://github.com/11notes/RTFM/blob/main/linux/container/image/rootless.md) as 1000:1000
+>* ... this image is auto updated to the latest version via CI/CD
+>* ... this image is built from source (wheels are compile from source too, check [11notes/python-wheels](https://github.com/11notes/python-wheels))
+>* ... this image has a health check
+>* ... this image runs read-only
+>* ... this image is automatically scanned for CVEs before and after publishing
+>* ... this image is created via a secure and pinned CI/CD process
+>* ... this image is very small
 
-If you value security, simplicity and the ability to interact with the maintainer and developer of an image. Using my images is a great start in that direction.
+If you value security, simplicity and optimizations to the extreme, then this image might be for you.
 
 # COMPARISON 🏁
 Below you find a comparison between this image and the most used or original one.
 
-| **image** | 11notes/sabnzbd:4.5.2 | linuxserver/sabnzbd:4.5.2 |
-| ---: | :---: | :---: |
-| **image size on disk** | 168MB | 173MB |
-| **process UID/GID** | 1000/1000 | 0/0 |
-| **distroless?** | ❌ | ❌ |
-| **rootless?** | ✅ | ❌ |
-
-
-**Why is this image not distroless?** I would have loved to create a distroless, single binary image. For Python this is a bit tricky though. You can compile Python via clang to a stand-alone binary, but it requires a lot of maintenance which is currently not something I want to do.
+| **image** | **size on disk** | **init default as** | **[distroless](https://github.com/11notes/RTFM/blob/main/linux/container/image/distroless.md)** | supported architectures
+| ---: | ---: | :---: | :---: | :---: |
+| home-operations/sabnzbd | 126MB | 65534:65533 | ❌ | amd64, arm64 |
+| linuxserver/sabnzbd | 173MB | 0:0 | ❌ | amd64, arm64 |
+| hotio/sabnzbd | 257MB | 0:0 | ❌ | amd64, arm64 |
 
 # VOLUMES 📁
-* **/sabnzbd/etc** - Directory of all your settings and database
+* **/sabnzbd/etc** - Directory of all your settings
 
 # COMPOSE ✂️
 ```yaml
 name: "arrs"
+
+x-lockdown: &lockdown
+  # prevents write access to the image itself
+  read_only: true
+  # prevents any process within the container to gain more privileges
+  security_opt:
+    - "no-new-privileges=true"
+
 services:
   sabnzbd:
-    image: "11notes/sabnzbd:4.5.2"
-    read_only: true
+    image: "11notes/sabnzbd:4.5.3"
+    <<: *lockdown
     environment:
       TZ: "Europe/Zurich"
     volumes:
@@ -52,7 +70,7 @@ services:
       # required for read-only image
       - "/tmp:uid=1000,gid=1000"
     ports:
-      - "8080:8080/tcp"
+      - "3000:8080/tcp"
     networks:
       frontend:
     restart: "always"
@@ -81,18 +99,18 @@ networks:
 # MAIN TAGS 🏷️
 These are the main tags for the image. There is also a tag for each commit and its shorthand sha256 value.
 
-* [4.5.2](https://hub.docker.com/r/11notes/sabnzbd/tags?name=4.5.2)
+* [4.5.3](https://hub.docker.com/r/11notes/sabnzbd/tags?name=4.5.3)
 
 ### There is no latest tag, what am I supposed to do about updates?
-It is of my opinion that the ```:latest``` tag is dangerous. Many times, I’ve introduced **breaking** changes to my images. This would have messed up everything for some people. If you don’t want to change the tag to the latest [semver](https://semver.org/), simply use the short versions of [semver](https://semver.org/). Instead of using ```:4.5.2``` you can use ```:4``` or ```:4.5```. Since on each new version these tags are updated to the latest version of the software, using them is identical to using ```:latest``` but at least fixed to a major or minor version.
+It is of my opinion that the ```:latest``` tag is dangerous. Many times, I’ve introduced **breaking** changes to my images. This would have messed up everything for some people. If you don’t want to change the tag to the latest [semver](https://semver.org/), simply use the short versions of [semver](https://semver.org/). Instead of using ```:4.5.3``` you can use ```:4``` or ```:4.5```. Since on each new version these tags are updated to the latest version of the software, using them is identical to using ```:latest``` but at least fixed to a major or minor version.
 
 If you still insist on having the bleeding edge release of this app, simply use the ```:rolling``` tag, but be warned! You will get the latest version of the app instantly, regardless of breaking changes or security issues or what so ever. You do this at your own risk!
 
 # REGISTRIES ☁️
 ```
-docker pull 11notes/sabnzbd:4.5.2
-docker pull ghcr.io/11notes/sabnzbd:4.5.2
-docker pull quay.io/11notes/sabnzbd:4.5.2
+docker pull 11notes/sabnzbd:4.5.3
+docker pull ghcr.io/11notes/sabnzbd:4.5.3
+docker pull quay.io/11notes/sabnzbd:4.5.3
 ```
 
 # SOURCE 💾
@@ -110,7 +128,11 @@ docker pull quay.io/11notes/sabnzbd:4.5.2
 >* Use a reverse proxy like Traefik, Nginx, HAproxy to terminate TLS and to protect your endpoints
 >* Use Let’s Encrypt DNS-01 challenge to obtain valid SSL certificates for your services
 
+# CAUTION ⚠️
+> [!CAUTION]
+>* This image contains the freeware (not open source) unrar!
+
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-sabnzbd/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-sabnzbd/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-sabnzbd/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 10.07.2025, 07:32:33 (CET)*
+*created 09.09.2025, 11:11:35 (CET)*
