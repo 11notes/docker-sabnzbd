@@ -1,4 +1,6 @@
-${{ content_synopsis }} This image will give you a rootless and lightweight SABnzbd installation.
+${{ image: Interface.png }}
+
+${{ content_synopsis }} This image will give you a [rootless](https://github.com/11notes/RTFM/blob/main/linux/container/image/rootless.md) and lightweight SABnzbd installation for your adventures on the high seas *arrrr*!
 
 ${{ content_arr_stack }}
 
