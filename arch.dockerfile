@@ -49,10 +49,11 @@
   ARG APP_OPT_ROOT \
       APP_ROOT \
       APP_UID \
-      APP_GID
+      APP_GID \
+      BUILD_PYTHON
 
   COPY --from=opt ${APP_OPT_ROOT} ${APP_OPT_ROOT}
-  COPY --from=wheels /pip/wheels /pip/wheels 
+  COPY --from=wheels /pip/wheels /pip/wheels
   COPY ./rootfs /
 
   USER root
@@ -65,7 +66,7 @@
 
   RUN set -ex; \
     mkdir -p ${APP_ROOT}/etc; \
-    pip3 install \
+    pip install \
       --no-index \
       -f /pip/wheels \
       -f https://11notes.github.io/python-wheels/ \
