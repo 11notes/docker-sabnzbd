@@ -561,7 +561,9 @@ jobs:
   # ║                                                     ║
   # ╚═════════════════════════════════════════════════════╝
   finally:
-    needs: docker
+    needs:
+      - docker
+      - merge_platform_images
     name: finalize image creation
     runs-on: ubuntu-latest
 
