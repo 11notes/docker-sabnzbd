@@ -7,7 +7,7 @@
       APP_VERSION=0 \
       APP_OPT_ROOT=/opt/sabnzbd
   ARG BUILD_ROOT=/SABnzbd-${APP_VERSION} \
-      BUILD_PYTHON=3.13
+      BUILD_PYTHON=3.12
 
 # :: FOREIGN IMAGES
   FROM 11notes/distroless:localhealth AS distroless-localhealth
@@ -45,7 +45,7 @@
       -r /requirements.txt;
 
 # :: SABNZBD
-  FROM 11notes/python:3 AS build
+  FROM 11notes/python:${BUILD_PYTHON} AS build
   ARG APP_OPT_ROOT \
       APP_ROOT \
       APP_UID \
