@@ -5,7 +5,7 @@
   ARG APP_UID=1000 \
       APP_GID=1000 \
       APP_VERSION=0 \
-      APP_OPT_ROOT=/opt/sabnzbd
+      OPT_ROOT=/opt/sabnzbd
   ARG BUILD_ROOT=/SABnzbd-${APP_VERSION} \
       BUILD_PYTHON=3.12
 
@@ -24,18 +24,18 @@
   FROM alpine AS opt
   COPY --from=util-bin / /
   ARG APP_VERSION \
-      APP_OPT_ROOT \
+      OPT_ROOT \
       BUILD_ROOT
 
   RUN set -ex; \
     eleven github asset sabnzbd/sabnzbd ${APP_VERSION} SABnzbd-${APP_VERSION}-src.tar.gz; \
-    mkdir -p ${APP_OPT_ROOT}; \
-    cp -R ${BUILD_ROOT}/* ${APP_OPT_ROOT};
+    mkdir -p ${OPT_ROOT}; \
+    cp -R ${BUILD_ROOT}/* ${OPT_ROOT};
 
 # :: WHEELS
   FROM 11notes/python:wheel-${BUILD_PYTHON} AS wheels
-  ARG APP_OPT_ROOT
-  COPY --from=opt ${APP_OPT_ROOT}/requirements.txt /requirements.txt
+  ARG OPT_ROOT
+  COPY --from=opt ${OPT_ROOT}/requirements.txt /requirements.txt
   USER root
   RUN set -ex; \
     mkdir -p /pip/wheels; \
@@ -46,13 +46,13 @@
 
 # :: SABNZBD
   FROM 11notes/python:${BUILD_PYTHON} AS build
-  ARG APP_OPT_ROOT \
+  ARG OPT_ROOT \
       APP_ROOT \
       APP_UID \
       APP_GID \
       BUILD_PYTHON
 
-  COPY --from=opt ${APP_OPT_ROOT} ${APP_OPT_ROOT}
+  COPY --from=opt ${OPT_ROOT} ${OPT_ROOT}
   COPY --from=wheels /pip/wheels /pip/wheels
   COPY ./rootfs /
 
@@ -70,13 +70,14 @@
       --no-index \
       -f /pip/wheels \
       -f https://11notes.github.io/python-wheels/ \
-      -r ${APP_OPT_ROOT}/requirements.txt; \
-    rm -f ${APP_OPT_ROOT}/requirements.txt; \
+      -r ${OPT_ROOT}/requirements.txt; \
+    rm -f ${OPT_ROOT}/requirements.txt; \
     rm -rf /pip/wheels;
 
   RUN set -ex; \
     chmod +x -R /usr/local/bin; \
     chown -R ${APP_UID}:${APP_GID} \
+      ${OPT_ROOT} \
       ${APP_ROOT};
 
 # ╔═════════════════════════════════════════════════════╗
@@ -99,7 +100,7 @@
         APP_NO_CACHE
 
   # :: app specific arguments
-    ARG APP_OPT_ROOT
+    ARG OPT_ROOT
 
   # :: default environment
     ENV APP_IMAGE=${APP_IMAGE} \
@@ -108,7 +109,7 @@
         APP_ROOT=${APP_ROOT}
 
   # :: app specific environment
-    ENV APP_OPT_ROOT=${APP_OPT_ROOT}
+    ENV OPT_ROOT=${OPT_ROOT}
 
   # :: multi-stage
     COPY --from=distroless-par2 / /
