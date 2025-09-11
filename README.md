@@ -29,7 +29,8 @@ This image is part of the so called arr-stack (apps to pirate and manage media c
 > [!IMPORTANT]
 >* ... this image runs [rootless](https://github.com/11notes/RTFM/blob/main/linux/container/image/rootless.md) as 1000:1000
 >* ... this image is auto updated to the latest version via CI/CD
->* ... this image is built from source (wheels are compile from source too, check [11notes/python-wheels](https://github.com/11notes/python-wheels))
+>* ... this image is built and compiled from source (including wheels: [11notes/python-wheels](https://github.com/11notes/python-wheels))
+>* ... this image supports 32bit architecture
 >* ... this image has a health check
 >* ... this image runs read-only
 >* ... this image is automatically scanned for CVEs before and after publishing
@@ -47,6 +48,7 @@ Below you find a comparison between this image and the most used or original one
 | home-operations/sabnzbd | 126MB | 65534:65533 | ❌ | amd64, arm64 |
 | linuxserver/sabnzbd | 173MB | 0:0 | ❌ | amd64, arm64 |
 | hotio/sabnzbd | 257MB | 0:0 | ❌ | amd64, arm64 |
+
 
 # VOLUMES 📁
 * **/sabnzbd/etc** - Directory of all your settings
@@ -139,4 +141,4 @@ docker pull quay.io/11notes/sabnzbd:4.5.3
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-sabnzbd/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-sabnzbd/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-sabnzbd/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 09.09.2025, 15:45:42 (CET)*
+*created 11.09.2025, 01:36:28 (CET)*
