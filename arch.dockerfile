@@ -99,17 +99,11 @@
         APP_GID \
         APP_NO_CACHE
 
-  # :: app specific arguments
-    ARG OPT_ROOT
-
   # :: default environment
     ENV APP_IMAGE=${APP_IMAGE} \
         APP_NAME=${APP_NAME} \
         APP_VERSION=${APP_VERSION} \
         APP_ROOT=${APP_ROOT}
-
-  # :: app specific environment
-    ENV OPT_ROOT=${OPT_ROOT}
 
   # :: multi-stage
     COPY --from=distroless-par2 / /
