@@ -78,7 +78,8 @@
     chmod +x -R /usr/local/bin; \
     chown -R ${APP_UID}:${APP_GID} \
       ${OPT_ROOT} \
-      ${APP_ROOT};
+      ${APP_ROOT}; \
+    chmod -R 0755 ${OPT_ROOT};
 
 # ╔═════════════════════════════════════════════════════╗
 # ║                       IMAGE                         ║
