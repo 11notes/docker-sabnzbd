@@ -87,6 +87,7 @@ volumes:
 networks:
   frontend:
 ```
+To find out how you can change the default UID/GID of this container image, consult the [how-to.changeUIDGID](https://github.com/11notes/RTFM/blob/main/linux/container/image/11notes/how-to.changeUIDGID.md#change-uidgid-the-correct-way) section of my [RTFM](https://github.com/11notes/RTFM)
 
 # DEFAULT SETTINGS 🗃️
 | Parameter | Value | Description |
@@ -145,4 +146,4 @@ This image supports unraid by default. Simply add **-unraid** to any tag and the
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-sabnzbd/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-sabnzbd/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-sabnzbd/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 11.09.2025, 14:58:11 (CET)*
+*created 15.09.2025, 11:07:03 (CET)*
