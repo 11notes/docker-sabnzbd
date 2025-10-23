@@ -3,11 +3,11 @@
   "name": "sabnzbd",
   "root": "/sabnzbd",
   "semver": {
-    "version": "4.5.3"
+    "version": "4.5.4"
   },
   "readme": {
     "description": "Run SABnzbd rootless, lightweight and secure",
-    "introduction":"[SABnzbd](https://github.com/sabnzbd/sabnzbd) (created by [sabnzbd](https://github.com/sabnzbd)) is an Open Source Binary Newsreader written in Python. It's totally free, easy to use, and works practically everywhere. SABnzbd makes Usenet as simple and streamlined as possible by automating everything we can. All you have to do is add an .nzb. SABnzbd takes over from there, where it will be automatically downloaded, verified, repaired, extracted and filed away with zero human interaction. SABnzbd offers an easy setup wizard and has self-analysis tools to verify your setup.",
+    "introduction": "[SABnzbd](https://github.com/sabnzbd/sabnzbd) (created by [sabnzbd](https://github.com/sabnzbd)) is an Open Source Binary Newsreader written in Python. It's totally free, easy to use, and works practically everywhere. SABnzbd makes Usenet as simple and streamlined as possible by automating everything we can. All you have to do is add an .nzb. SABnzbd takes over from there, where it will be automatically downloaded, verified, repaired, extracted and filed away with zero human interaction. SABnzbd offers an easy setup wizard and has self-analysis tools to verify your setup.",
     "parent": {
       "image": "11notes/alpine:stable"
     },
@@ -15,7 +15,11 @@
       "sabnzbd": "https://github.com/sabnzbd/sabnzbd"
     },
     "comparison": {
-      "images": ["linuxserver/sabnzbd", "ghcr.io/hotio/sabnzbd", "ghcr.io/home-operations/sabnzbd:rolling"]
+      "images": [
+        "linuxserver/sabnzbd",
+        "ghcr.io/hotio/sabnzbd",
+        "ghcr.io/home-operations/sabnzbd:rolling"
+      ]
     }
   }
 }
