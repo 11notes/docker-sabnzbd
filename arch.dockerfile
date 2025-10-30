@@ -7,7 +7,7 @@
       APP_VERSION=0 \
       OPT_ROOT=/opt/sabnzbd
   ARG BUILD_ROOT=/SABnzbd-${APP_VERSION} \
-      BUILD_PYTHON=3.12
+      BUILD_PYTHON=3.13
 
 # :: FOREIGN IMAGES
   FROM 11notes/distroless:localhealth AS distroless-localhealth
@@ -39,7 +39,7 @@
   USER root
   RUN set -ex; \
     mkdir -p /pip/wheels; \
-    pip3 wheel \
+    pip wheel \
       --wheel-dir /pip/wheels \
       -f https://11notes.github.io/python-wheels/ \
       -r /requirements.txt;
@@ -79,7 +79,7 @@
     chown -R ${APP_UID}:${APP_GID} \
       ${OPT_ROOT} \
       ${APP_ROOT}; \
-    chmod -R 0755 ${OPT_ROOT};
+    chmod -R 0755 ${OPT_ROOT}/*;
 
 # ╔═════════════════════════════════════════════════════╗
 # ║                       IMAGE                         ║
