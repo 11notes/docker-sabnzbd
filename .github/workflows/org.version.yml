@@ -36,4 +36,4 @@ jobs:
           wait-for-completion: false
           workflow: org.container.yml
           token: "${{ secrets.REPOSITORY_TOKEN }}"
-          inputs: '{ "release":"false", "readme":"false", "etc":"${{ env.WORKFLOW_BASE64JSON }}" }'
+          inputs: '{ "release":"false", "readme":"false", "run-name":"org.container build ${{ github.event.inputs.version }}", "etc":"${{ env.WORKFLOW_BASE64JSON }}" }'

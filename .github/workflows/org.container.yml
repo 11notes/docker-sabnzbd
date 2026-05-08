@@ -465,7 +465,7 @@ jobs:
 
       # SCAN LOCAL CONTAINER IMAGE WITH GRYPE
       - name: container image / scan with grype
-        if: env.WORKFLOW_BUILD == 'true'
+        if: env.WORKFLOW_BUILD == 'true' && matrix.platform == 'amd64'
         id: grype
         uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # v7.4.0
         with:
@@ -473,20 +473,12 @@ jobs:
           fail-build: ${{ env.WORKFLOW_GRYPE_FAIL_ON_SEVERITY }}
           severity-cutoff: ${{ env.WORKFLOW_GRYPE_SEVERITY_CUTOFF }}
           output-format: 'sarif'
-          by-cve: true
-          cache-db: true
+          output-file: ${{ runner.temp }}/grype.json
 
-      # OUTPUT CVE REPORT IF SCAN FAILS
-      - name: container image / scan with grype FAILED
+      - name: container image / scan with grype FAILED / json output
         if: env.WORKFLOW_BUILD == 'true' && (failure() || steps.grype.outcome == 'failure') && steps.image-build.outcome == 'success'
-        uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # v7.4.0
-        with:
-          image: ${{ env.DOCKER_CACHE_GRYPE }}
-          fail-build: false
-          severity-cutoff: ${{ env.WORKFLOW_GRYPE_SEVERITY_CUTOFF }}
-          output-format: 'table'
-          by-cve: true
-          cache-db: true
+        run: |
+          cat ${{ runner.temp }}/grype.json | jq -r '.runs[].tool.driver.rules[].help.markdown' >> $GITHUB_STEP_SUMMARY
 
       # PUSH IMAGE TO ALL REGISTRIES IF CLEAN
       - name: container image / push to registries
