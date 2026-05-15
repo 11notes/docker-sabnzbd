@@ -9,7 +9,7 @@ x-lockdown: &lockdown
 
 services:
   sabnzbd:
-    image: "11notes/sabnzbd:5.0.1"
+    image: "11notes/sabnzbd:5.0.2"
     <<: *lockdown
     environment:
       TZ: "Europe/Zurich"
