@@ -67,7 +67,7 @@ x-lockdown: &lockdown
 
 services:
   sabnzbd:
-    image: "11notes/sabnzbd:5.0.2"
+    image: "11notes/sabnzbd:5.0.3"
     <<: *lockdown
     environment:
       TZ: "Europe/Zurich"
@@ -107,20 +107,20 @@ To find out how you can change the default UID/GID of this container image, cons
 # MAIN TAGS 🏷️
 These are the main tags for the image. There is also a tag for each commit and its shorthand sha256 value.
 
-* [5.0.2](https://hub.docker.com/r/11notes/sabnzbd/tags?name=5.0.2)
-* [5.0.2-unraid](https://hub.docker.com/r/11notes/sabnzbd/tags?name=5.0.2-unraid)
-* [5.0.2-nobody](https://hub.docker.com/r/11notes/sabnzbd/tags?name=5.0.2-nobody)
+* [5.0.3](https://hub.docker.com/r/11notes/sabnzbd/tags?name=5.0.3)
+* [5.0.3-unraid](https://hub.docker.com/r/11notes/sabnzbd/tags?name=5.0.3-unraid)
+* [5.0.3-nobody](https://hub.docker.com/r/11notes/sabnzbd/tags?name=5.0.3-nobody)
 
 ### There is no latest tag, what am I supposed to do about updates?
-It is my opinion that the ```:latest``` tag is a bad habbit and should not be used at all. Many developers introduce **breaking changes** in new releases. This would messed up everything for people who use ```:latest```. If you don’t want to change the tag to the latest [semver](https://semver.org/), simply use the short versions of [semver](https://semver.org/). Instead of using ```:5.0.2``` you can use ```:5``` or ```:5.0```. Since on each new version these tags are updated to the latest version of the software, using them is identical to using ```:latest``` but at least fixed to a major or minor version. Which in theory should not introduce breaking changes.
+It is my opinion that the ```:latest``` tag is a bad habbit and should not be used at all. Many developers introduce **breaking changes** in new releases. This would messed up everything for people who use ```:latest```. If you don’t want to change the tag to the latest [semver](https://semver.org/), simply use the short versions of [semver](https://semver.org/). Instead of using ```:5.0.3``` you can use ```:5``` or ```:5.0```. Since on each new version these tags are updated to the latest version of the software, using them is identical to using ```:latest``` but at least fixed to a major or minor version. Which in theory should not introduce breaking changes.
 
 If you still insist on having the bleeding edge release of this app, simply use the ```:rolling``` tag, but be warned! You will get the latest version of the app instantly, regardless of breaking changes or security issues or what so ever. You do this at your own risk!
 
 # REGISTRIES ☁️
 ```
-docker pull 11notes/sabnzbd:5.0.2
-docker pull ghcr.io/11notes/sabnzbd:5.0.2
-docker pull quay.io/11notes/sabnzbd:5.0.2
+docker pull 11notes/sabnzbd:5.0.3
+docker pull ghcr.io/11notes/sabnzbd:5.0.3
+docker pull quay.io/11notes/sabnzbd:5.0.3
 ```
 
 # UNRAID VERSION 🟠
@@ -151,4 +151,4 @@ This image supports nobody by default. Simply add **-nobody** to any tag and the
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-sabnzbd/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-sabnzbd/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-sabnzbd/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 15.05.2026, 06:04:31 (CET)*
+*created 16.05.2026, 06:04:16 (CET)*
