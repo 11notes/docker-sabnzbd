@@ -86,8 +86,8 @@
       ${OPT_ROOT}/tests; \
     find / -type f -executable -exec du -h {} + | sort -rh | head -n 10 | awk -F ' ' '{print $2}' | xargs -I {} ds {}; \
     ds --bye; \
-    which pip pip3 | xargs -I {} rm -f {}; \
-    echo $(python -c "import site; print(site.getsitepackages())")/pip | sed "s|[][']||g" | xargs -I {} rm -rf {};
+    which pip pip3 | xargs -I {} rm -f {} || true; \
+    echo $(python -c "import site; print(site.getsitepackages())")/pip | sed "s|[][']||g" | xargs -I {} rm -rf {} || true;
 
 # ╔═════════════════════════════════════════════════════╗
 # ║                       IMAGE                         ║
