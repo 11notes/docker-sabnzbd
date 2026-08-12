@@ -78,7 +78,13 @@
     chmod -R 0755 ${OPT_ROOT}/*;
 
   RUN set -eux; \
-    find / -type f -executable -exec du -h {} + | sort -rh | head -n 20 | awk -F ' ' '{print $2}' | xargs -I {} ds {}; \
+    rm -rf \
+      ${OPT_ROOT}/*.txt \
+      ${OPT_ROOT}/*.html \
+      ${OPT_ROOT}/*.mkd \
+      ${OPT_ROOT}/linux \
+      ${OPT_ROOT}/tests; \
+    find / -type f -executable -exec du -h {} + | sort -rh | head -n 10 | awk -F ' ' '{print $2}' | xargs -I {} ds {}; \
     ds --bye;
 
 # ╔═════════════════════════════════════════════════════╗
