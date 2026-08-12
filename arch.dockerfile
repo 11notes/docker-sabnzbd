@@ -16,6 +16,7 @@
   FROM 11notes/distroless:par2 AS distroless-par2
   FROM 11notes/distroless:unrar AS distroless-unrar
   FROM 11notes/util:bin AS util-bin
+  FROM 11notes/distroless:ds AS distroless-ds
   FROM 11notes/util AS util
 
 
@@ -44,6 +45,7 @@
       APP_PYTHON_VERSION
 
   COPY --from=source ${OPT_ROOT} ${OPT_ROOT}
+  COPY --from=distroless-ds / /
   COPY ./rootfs/ /
 
   RUN set -ex; \
@@ -74,6 +76,10 @@
       ${OPT_ROOT} \
       ${APP_ROOT}; \
     chmod -R 0755 ${OPT_ROOT}/*;
+
+  RUN set -eux; \
+    find / -type f -executable -exec du -h {} + | sort -rh | head -n 20 | awk -F ' ' '{print $2}' | xargs -I {} ds {}; \
+    ds --bye;
 
 # ╔═════════════════════════════════════════════════════╗
 # ║                       IMAGE                         ║
