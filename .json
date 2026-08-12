@@ -1,5 +1,6 @@
 {
   "image": "11notes/sabnzbd",
+  "platform":"amd64,arm64",
   "name": "sabnzbd",
   "root": "/sabnzbd",
   "semver": {
