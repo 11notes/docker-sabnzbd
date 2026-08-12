@@ -9,7 +9,7 @@ services:
   main:
     image: "${IMAGE}"
     healthcheck:
-      test: ["/usr/local/bin/localhealth", "http://127.0.0.1:8080/", "-I"]
+      test: ["CMD", "/usr/local/bin/localhealth", "http://127.0.0.1:8080/", "-I"]
       interval: 5s
       timeout: 2s
       retries: 3
