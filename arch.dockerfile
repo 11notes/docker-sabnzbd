@@ -6,6 +6,8 @@
       APP_GID=1000 \
       APP_VERSION=0 \
       APP_PYTHON_VERSION=0
+
+# APP
   ARG BUILD_ROOT=/SABnzbd-${APP_VERSION} \
       OPT_ROOT=/opt/sabnzbd
 
@@ -21,7 +23,7 @@
 # ║                       BUILD                         ║
 # ╚═════════════════════════════════════════════════════╝
 # :: SOURCE
-  FROM alpine AS opt
+  FROM alpine AS source
   COPY --from=util-bin / /
   ARG APP_VERSION \
       OPT_ROOT \
@@ -32,49 +34,41 @@
     mkdir -p ${OPT_ROOT}; \
     cp -R ${BUILD_ROOT}/* ${OPT_ROOT};
 
-# :: WHEELS
-  FROM 11notes/python:wheel-${APP_PYTHON_VERSION} AS wheels
-  ARG OPT_ROOT
-  COPY --from=opt ${OPT_ROOT}/requirements.txt /requirements.txt
-  USER root
-  RUN set -ex; \
-    mkdir -p /pip/wheels; \
-    pip wheel \
-      --wheel-dir /pip/wheels \
-      -f https://11notes.github.io/python-wheels/ \
-      -r /requirements.txt;
-
 # :: SABNZBD
   FROM 11notes/python:${APP_PYTHON_VERSION} AS build
+  USER root
   ARG OPT_ROOT \
       APP_ROOT \
       APP_UID \
       APP_GID \
       APP_PYTHON_VERSION
 
-  COPY --from=opt ${OPT_ROOT} ${OPT_ROOT}
-  COPY --from=wheels /pip/wheels /pip/wheels
-  COPY ./rootfs /
-
-  USER root
+  COPY --from=source ${OPT_ROOT} ${OPT_ROOT}
+  COPY ./rootfs/ /
 
   RUN set -ex; \
-    apk --no-cache --update add \
+    pip install \
+      uv;
+
+  RUN set -ex; \
+    uv pip install \
+      --only-binary=:all: \
+      -r ${OPT_ROOT}/requirements.txt;
+
+  RUN set -ex; \
+    pip uninstall -y \
+      uv;
+
+  RUN set -eux; \
+    apk --update --no-cache add \
       util-linux-misc \
       unzip \
-      7zip;
+      7zip \
+      coreutils \
+      libstdc++;
 
   RUN set -ex; \
     mkdir -p ${APP_ROOT}/etc; \
-    pip install \
-      --no-index \
-      -f /pip/wheels \
-      -f https://11notes.github.io/python-wheels/ \
-      -r ${OPT_ROOT}/requirements.txt; \
-    rm -f ${OPT_ROOT}/requirements.txt; \
-    rm -rf /pip/wheels;
-
-  RUN set -ex; \
     chmod +x -R /usr/local/bin; \
     chown -R ${APP_UID}:${APP_GID} \
       ${OPT_ROOT} \
