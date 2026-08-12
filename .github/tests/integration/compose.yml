@@ -22,7 +22,7 @@ services:
     tmpfs:
       - "/tmp:uid=1000,gid=1000"
     ports:
-      - "3000:8080/tcp"
+      - "8080:8080/tcp"
     networks:
       frontend:
     restart: "always"
