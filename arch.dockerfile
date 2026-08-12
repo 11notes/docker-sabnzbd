@@ -38,6 +38,7 @@
   FROM 11notes/python:${APP_PYTHON_VERSION} AS build
   USER root
   ARG OPT_ROOT \
+      APP_VERSION \
       APP_ROOT \
       APP_UID \
       APP_GID \
@@ -66,6 +67,9 @@
       7zip \
       coreutils \
       libstdc++;
+
+  RUN set -eux; \
+    /usr/local/bin/python /opt/sabnzbd/SABnzbd.py --version | grep -q "${APP_VERSION}";
 
   RUN set -ex; \
     mkdir -p ${APP_ROOT}/etc; \
