@@ -16,7 +16,6 @@
   FROM 11notes/distroless:par2 AS distroless-par2
   FROM 11notes/distroless:unrar AS distroless-unrar
   FROM 11notes/util:bin AS util-bin
-  FROM 11notes/distroless:ds AS distroless-ds
   FROM 11notes/util AS util
 
 
@@ -45,7 +44,6 @@
       APP_PYTHON_VERSION
 
   COPY --from=source ${OPT_ROOT} ${OPT_ROOT}
-  COPY --from=distroless-ds / /
   COPY ./rootfs/ /
 
   RUN set -ex; \
@@ -77,17 +75,6 @@
       ${APP_ROOT}; \
     chmod -R 0755 ${OPT_ROOT}/*;
 
-  RUN set -eux; \
-    rm -rf \
-      ${OPT_ROOT}/*.txt \
-      ${OPT_ROOT}/*.html \
-      ${OPT_ROOT}/*.mkd \
-      ${OPT_ROOT}/linux \
-      ${OPT_ROOT}/tests; \
-    find / -type f -executable -exec du -h {} + | sort -rh | head -n 10 | awk -F ' ' '{print $2}' | xargs -I {} ds {}; \
-    ds --bye; \
-    which pip pip3 | xargs -I {} rm -f {} || true; \
-    echo $(python -c "import site; print(site.getsitepackages())")/pip | sed "s|[][']||g" | xargs -I {} rm -rf {} || true;
 
 # ╔═════════════════════════════════════════════════════╗
 # ║                       IMAGE                         ║
