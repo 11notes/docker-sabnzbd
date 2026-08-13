@@ -68,9 +68,6 @@
       coreutils \
       libstdc++;
 
-  RUN set -eux; \
-    /usr/local/bin/python /opt/sabnzbd/SABnzbd.py --version | grep -q "${APP_VERSION}";
-
   RUN set -ex; \
     mkdir -p ${APP_ROOT}/etc; \
     chmod +x -R /usr/local/bin; \
@@ -78,6 +75,21 @@
       ${OPT_ROOT} \
       ${APP_ROOT}; \
     chmod -R 0755 ${OPT_ROOT}/*;
+
+  RUN set -eux; \
+    rm -rf \
+      ${OPT_ROOT}/*.txt \
+      ${OPT_ROOT}/*.html \
+      ${OPT_ROOT}/*.mkd \
+      ${OPT_ROOT}/linux \
+      ${OPT_ROOT}/tests;
+
+  RUN set -eux; \ 
+    which pip pip3 | xargs -I {} rm -f {} || true; \
+    echo $(python -c "import site; print(site.getsitepackages())")/pip | sed "s|[][']||g" | xargs -I {} rm -rf {} || true;
+
+  RUN set -eux; \
+    /usr/local/bin/python /opt/sabnzbd/SABnzbd.py --version | grep -q "${APP_VERSION}";
 
 
 # ╔═════════════════════════════════════════════════════╗
