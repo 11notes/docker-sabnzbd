@@ -48,7 +48,7 @@ Below you find a comparison between this image and the most used or original one
 | ---: | ---: | :---: | :---: | :---: |
 | 11notes/sabnzbd | 118MB | 1000:1000 | ❌ | amd64, arm64 |
 | home-operations/sabnzbd | 125MB | 65534:65533 | ❌ | amd64, arm64 |
-| linuxserver/sabnzbd | 180MB | 0:0 | ❌ | amd64, arm64 |
+| linuxserver/sabnzbd | 181MB | 0:0 | ❌ | amd64, arm64 |
 | hotio/sabnzbd | 259MB | 0:0 | ❌ | amd64, arm64 |
 
 
@@ -68,7 +68,7 @@ x-lockdown: &lockdown
 
 services:
   sabnzbd:
-    image: "11notes/sabnzbd:5.1.0"
+    image: "11notes/sabnzbd:5.1.1"
     <<: *lockdown
     environment:
       TZ: "Europe/Zurich"
@@ -108,20 +108,20 @@ To find out how you can change the default UID/GID of this container image, cons
 # MAIN TAGS 🏷️
 These are the main tags for the image. There is also a tag for each commit and its shorthand sha256 value.
 
-* [5.1.0](https://hub.docker.com/r/11notes/sabnzbd/tags?name=5.1.0)
-* [5.1.0-unraid](https://hub.docker.com/r/11notes/sabnzbd/tags?name=5.1.0-unraid)
-* [5.1.0-nobody](https://hub.docker.com/r/11notes/sabnzbd/tags?name=5.1.0-nobody)
+* [5.1.1](https://hub.docker.com/r/11notes/sabnzbd/tags?name=5.1.1)
+* [5.1.1-unraid](https://hub.docker.com/r/11notes/sabnzbd/tags?name=5.1.1-unraid)
+* [5.1.1-nobody](https://hub.docker.com/r/11notes/sabnzbd/tags?name=5.1.1-nobody)
 
 ### There is no latest tag, what am I supposed to do about updates?
-It is my opinion that the ```:latest``` tag is a bad habbit and should not be used at all. Many developers introduce **breaking changes** in new releases. This would messed up everything for people who use ```:latest```. If you don’t want to change the tag to the latest [semver](https://semver.org/), simply use the short versions of [semver](https://semver.org/). Instead of using ```:5.1.0``` you can use ```:5``` or ```:5.1```. Since on each new version these tags are updated to the latest version of the software, using them is identical to using ```:latest``` but at least fixed to a major or minor version. Which in theory should not introduce breaking changes.
+It is my opinion that the ```:latest``` tag is a bad habbit and should not be used at all. Many developers introduce **breaking changes** in new releases. This would messed up everything for people who use ```:latest```. If you don’t want to change the tag to the latest [semver](https://semver.org/), simply use the short versions of [semver](https://semver.org/). Instead of using ```:5.1.1``` you can use ```:5``` or ```:5.1```. Since on each new version these tags are updated to the latest version of the software, using them is identical to using ```:latest``` but at least fixed to a major or minor version. Which in theory should not introduce breaking changes.
 
 If you still insist on having the bleeding edge release of this app, simply use the ```:rolling``` tag, but be warned! You will get the latest version of the app instantly, regardless of breaking changes or security issues or what so ever. You do this at your own risk!
 
 # REGISTRIES ☁️
 ```
-docker pull 11notes/sabnzbd:5.1.0
-docker pull ghcr.io/11notes/sabnzbd:5.1.0
-docker pull quay.io/11notes/sabnzbd:5.1.0
+docker pull 11notes/sabnzbd:5.1.1
+docker pull ghcr.io/11notes/sabnzbd:5.1.1
+docker pull quay.io/11notes/sabnzbd:5.1.1
 ```
 
 # UNRAID VERSION 🟠
@@ -152,4 +152,4 @@ This image supports nobody by default. Simply add **-nobody** to any tag and the
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-sabnzbd/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-sabnzbd/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-sabnzbd/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 13.08.2026, 08:30:51 (CET)*
+*created 19.08.2026, 09:02:14 (CET)*
