@@ -1,10 +1,10 @@
 {
   "image": "11notes/sabnzbd",
-  "platform":"amd64,arm64",
+  "platform": "amd64,arm64",
   "name": "sabnzbd",
   "root": "/sabnzbd",
   "semver": {
-    "version": "5.1.0"
+    "version": "5.1.1"
   },
   "readme": {
     "description": "Run SABnzbd rootless, lightweight and secure.",
