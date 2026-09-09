@@ -4,7 +4,7 @@
   "name": "sabnzbd",
   "root": "/sabnzbd",
   "semver": {
-    "version": "5.1.2"
+    "version": "5.1.3"
   },
   "readme": {
     "description": "Run SABnzbd rootless, lightweight and secure.",
